@@ -29,20 +29,22 @@ class Character implements Fighter {
     };
   }
 
-  get lifePoints():number { return this._lifePoints; }
-
-  get strength():number { return this._strength; }
-
-  get defense():number { return this._defense; }
+  public get race(): Race { return this._race; }
+  public get archetype(): Archetype { return this._archetype; }
+  public get lifePoints(): number { return this._lifePoints; } // <<<
+  public get strength(): number { return this._strength; }
+  public get defense(): number { return this._defense; }
+  public get dexterity(): number { return this._dexterity; }
+  public get energy(): Energy { return { ...this._energy }; }
 
   receiveDamage(attackPoints: number): number {
     const damage = this._defense - attackPoints;
 
-    if (damage > 0) {
-      return this._lifePoints - damage <= 0 ? -1 : this._lifePoints - damage;
-    }
+    if (damage > 0) this._lifePoints -= damage;
+    if (damage <= 0) this._lifePoints -= 1;
+    if (this._lifePoints <= 0) this._lifePoints = -1;
 
-    return this._lifePoints - 1 <= 0 ? -1 : this._lifePoints - 1;
+    return this._lifePoints;
   }
 
   attack(enemy: Fighter): void {
@@ -58,13 +60,8 @@ class Character implements Fighter {
 
     if (this._maxLifePoints > this._race.maxLifePoints) {
       this._maxLifePoints = this._race.maxLifePoints;
-      this._lifePoints = this._maxLifePoints;
     }
     this._lifePoints = this._maxLifePoints;
-  }
-
-  special(enemy: Fighter): void {
-    console.log(this._lifePoints, enemy);
   }
 }
 
