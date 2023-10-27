@@ -5,8 +5,8 @@ class Warrior extends Archetype {
   private readonly damageType = 'stamina';
   static numberOfInstances = 0;
 
-  constructor(name: string, special: number, cost: number) {
-    super(name, special, cost);
+  constructor(name: string) {
+    super(name);
     Warrior.numberOfInstances += 1;
   }
 

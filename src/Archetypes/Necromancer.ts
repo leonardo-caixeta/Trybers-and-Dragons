@@ -5,8 +5,8 @@ class Necromancer extends Archetype {
   private readonly damageType = 'mana';
   static numberOfInstances = 0;
 
-  constructor(name: string, special: number, cost: number) {
-    super(name, special, cost);
+  constructor(name: string) {
+    super(name);
     Necromancer.numberOfInstances += 1;
   }
 

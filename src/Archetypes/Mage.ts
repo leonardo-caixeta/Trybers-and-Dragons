@@ -5,17 +5,13 @@ class Mage extends Archetype {
   private readonly damageType = 'mana';
   static numberOfInstances = 0;
 
-  constructor(name: string, special: number, cost: number) {
-    super(name, special, cost);
+  constructor(name: string) {
+    super(name);
     Mage.numberOfInstances += 1;
   }
 
   static createdArchetypeInstances(): number {
     return this.numberOfInstances;
-  }
-
-  get name(): string {
-    return this.name;
   }
 
   get energyType(): EnergyType {
