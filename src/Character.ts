@@ -1,6 +1,6 @@
 import Archetype, { Mage } from './Archetypes';
 import Energy from './Energy';
-import Fighter from './Fighter';
+import Fighter, { SimpleFighter } from './Fighter';
 import Race, { Elf } from './Races';
 import getRandomInt from './utils';
 
@@ -31,7 +31,7 @@ class Character implements Fighter {
 
   public get race(): Race { return this._race; }
   public get archetype(): Archetype { return this._archetype; }
-  public get lifePoints(): number { return this._lifePoints; } // <<<
+  public get lifePoints(): number { return this._lifePoints; }
   public get strength(): number { return this._strength; }
   public get defense(): number { return this._defense; }
   public get dexterity(): number { return this._dexterity; }
@@ -47,7 +47,7 @@ class Character implements Fighter {
     return this._lifePoints;
   }
 
-  attack(enemy: Fighter): void {
+  attack(enemy: SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
